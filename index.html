@@ -133,12 +133,12 @@ releaseControl.addEventListener('input', ev => {
   releaseTime = Number(ev.target.value);
 }, false);
 
-const sweepLength = 2;
+const sweepLength = 1;
 // expose attack time & release time
 function playSweep() {
   const osc = audioCtx.createOscillator();
   osc.setPeriodicWave(wave);
-  osc.frequency.value = 280;
+  osc.frequency.value = 100;
 
   const sweepEnv = audioCtx.createGain();
   sweepEnv.gain.cancelScheduledValues(audioCtx.currentTime);
