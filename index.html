@@ -138,7 +138,7 @@ const sweepLength = 2;
 function playSweep() {
   const osc = audioCtx.createOscillator();
   osc.setPeriodicWave(wave);
-  osc.frequency.value = 380;
+  osc.frequency.value = 280;
 
   const sweepEnv = audioCtx.createGain();
   sweepEnv.gain.cancelScheduledValues(audioCtx.currentTime);
