@@ -23,67 +23,6 @@
     </section>
 
     <div id="tracks">
-      <!-- track one: bleep -->
-      <!-- track two: pad/sweep -->
-      <section class="track-two">
-        <h2>Pulse</h2>
-        <section class="controls">
-          <label for="hz">Hz</label>
-          <input name="hz" id="hz" type="range" min="660" max="1320" value="880" step="1" />
-          <label for="lfo">LFO</label>
-          <input name="lfo" id="lfo" type="range" min="20" max="40" value="30" step="1" />
-        </section><!--
-        --><section class="pads">
-          <button role="switch" aria-checked="false"><span>Voice 2, Note 1</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 2, Note 2</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 2, Note 3</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 2, Note 4</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 2, Note 5</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 2, Note 6</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 2, Note 7</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 2, Note 8</span></button>
-        </section>
-      </section>
-
-      <!-- track three: noise -->
-      <section class="track-three">
-        <h2>Noise</h2>
-        <section class="controls">
-          <label for="duration">Dur</label>
-          <input name="duration" id="duration" type="range" min="0" max="2" value="1" step="0.1" />
-          <label for="band">Band</label>
-          <input name="band" id="band" type="range" min="400" max="1200" value="1000" step="5" />
-        </section><!--
-        --><section class="pads">
-          <button role="switch" aria-checked="false"><span>Voice 3, Note 1</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 3, Note 2</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 3, Note 3</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 3, Note 4</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 3, Note 5</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 3, Note 6</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 3, Note 7</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 3, Note 8</span></button>
-        </section>
-      </section>
-
-      <!-- track four: drill -->
-      <section class="track-four">
-        <h2>DTMF</h2>
-        <section class="controls">
-          <label for="rate">Rate</label>
-          <input name="rate" id="rate" type="range" min="0.1" max="2" value="1" step="0.1" />
-        </section><!--
-        --><section class="pads">
-          <button role="switch" aria-checked="false"><span>Voice 4, Note 1</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 4, Note 2</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 4, Note 3</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 4, Note 4</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 4, Note 5</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 4, Note 6</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 4, Note 7</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 4, Note 8</span></button>
-        </section>
-      </section>
 
       <section class="track-five">
         <h2>Kick</h2>
@@ -156,6 +95,42 @@
           <button role="switch" aria-checked="false"><span>Voice 8, Note 8</span></button>
         </section>
       </section>
+
+      <section class="track-nine">
+        <h2>Rim</h2>
+        <section class="controls">
+          <label for="rate">Rate</label>
+          <input name="rate" id="rate" type="range" min="0.1" max="2" value="1" step="0.1" />
+        </section><!--
+        --><section class="pads">
+          <button role="switch" aria-checked="false"><span>Voice 9, Note 1</span></button>
+          <button role="switch" aria-checked="false"><span>Voice 9, Note 2</span></button>
+          <button role="switch" aria-checked="false"><span>Voice 9, Note 3</span></button>
+          <button role="switch" aria-checked="false"><span>Voice 9, Note 4</span></button>
+          <button role="switch" aria-checked="false"><span>Voice 9, Note 5</span></button>
+          <button role="switch" aria-checked="false"><span>Voice 9, Note 6</span></button>
+          <button role="switch" aria-checked="false"><span>Voice 9, Note 7</span></button>
+          <button role="switch" aria-checked="false"><span>Voice 9, Note 8</span></button>
+        </section>
+      </section>
+
+      <section class="track-ten">
+        <h2>Ride</h2>
+        <section class="controls">
+          <label for="rate">Rate</label>
+          <input name="rate" id="rate" type="range" min="0.1" max="2" value="1" step="0.1" />
+        </section><!--
+        --><section class="pads">
+          <button role="switch" aria-checked="false"><span>Voice 10, Note 1</span></button>
+          <button role="switch" aria-checked="false"><span>Voice 10, Note 2</span></button>
+          <button role="switch" aria-checked="false"><span>Voice 10, Note 3</span></button>
+          <button role="switch" aria-checked="false"><span>Voice 10, Note 4</span></button>
+          <button role="switch" aria-checked="false"><span>Voice 10, Note 5</span></button>
+          <button role="switch" aria-checked="false"><span>Voice 10, Note 6</span></button>
+          <button role="switch" aria-checked="false"><span>Voice 10, Note 7</span></button>
+          <button role="switch" aria-checked="false"><span>Voice 10, Note 8</span></button>
+        </section>
+      </section>
     </div>
   </div><!-- sequencer -->
 
@@ -185,98 +160,6 @@ allPadButtons.forEach(el => {
     }
   }, false)
 })
-
-const wave = audioCtx.createPeriodicWave(wavetable.real, wavetable.imag);
-
-
-const sweepLength = 1;
-// expose attack time & release time
-function playSweep() {
-  const osc = audioCtx.createOscillator();
-  osc.setPeriodicWave(wave);
-  osc.frequency.value = 100;
-
-  const sweepEnv = audioCtx.createGain();
-  sweepEnv.gain.cancelScheduledValues(audioCtx.currentTime);
-  sweepEnv.gain.setValueAtTime(0, audioCtx.currentTime);
-  sweepEnv.gain.linearRampToValueAtTime(1, audioCtx.currentTime + attackTime);
-  sweepEnv.gain.linearRampToValueAtTime(0, audioCtx.currentTime + sweepLength - releaseTime);
-
-  osc.connect(sweepEnv).connect(audioCtx.destination);
-  osc.start();
-  osc.stop(audioCtx.currentTime + sweepLength);
-}
-
-
-// expose frequency & frequency modulation
-let pulseHz = 880;
-const hzControl = document.querySelector('#hz');
-hzControl.addEventListener('input', ev => {
-  pulseHz = Number(ev.target.value);
-}, false);
-
-let lfoHz = 30;
-const lfoControl = document.querySelector('#lfo');
-lfoControl.addEventListener('input', ev => {
-  lfoHz = Number(ev.target.value);
-}, false);
-
-const pulseTime = 1;
-function playPulse() {
-  const osc = audioCtx.createOscillator();
-  osc.type = 'sine';
-  osc.frequency.setValueAtTime(pulseHz, audioCtx.currentTime);
-
-  const amp = audioCtx.createGain();
-  amp.gain.setValueAtTime(1, audioCtx.currentTime);
-
-  const lfo = audioCtx.createOscillator();
-  lfo.type = 'square';
-  lfo.frequency.setValueAtTime(lfoHz, audioCtx.currentTime);
-
-  lfo.connect(amp.gain);
-  osc.connect(amp).connect(audioCtx.destination);
-  lfo.start();
-  osc.start();
-  osc.stop(audioCtx.currentTime + pulseTime);
-}
-
-
-// expose noteDuration & band frequency
-let noiseDuration = 1;
-const durControl = document.querySelector('#duration');
-durControl.addEventListener('input', ev => {
-  noiseDuration = Number(ev.target.value);
-}, false);
-
-let bandHz = 1000;
-const bandControl = document.querySelector('#band');
-bandControl.addEventListener('input', ev => {
-  bandHz = Number(ev.target.value);
-}, false);
-
-function playNoise() {
-  const bufferSize = audioCtx.sampleRate * noiseDuration; // set the time of the note
-  const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate); // create an empty buffer
-  const data = buffer.getChannelData(0); // get data
-
-  // fill the buffer with noise
-  for (let i = 0; i < bufferSize; i++) {
-    data[i] = Math.random() * 2 - 1;
-  }
-
-  // create a buffer source for our created data
-  const noise = audioCtx.createBufferSource();
-  noise.buffer = buffer;
-
-  const bandpass = audioCtx.createBiquadFilter();
-  bandpass.type = 'bandpass';
-  bandpass.frequency.value = bandHz;
-
-  // connect our graph
-  noise.connect(bandpass).connect(audioCtx.destination);
-  noise.start();
-}
 
 // Loading ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // fetch the audio file and decode the data
@@ -310,6 +193,8 @@ async function setupSample() {
   const clapfp = 'clap.wav';
   const snarefp = 'snare.wav';
   const hihatfp = 'hihat.wav';
+  const rimfp = 'rim.wav';
+  const ridefp = 'ride.wav';
   // Here we're `await`ing the async/promise that is `getFile`.
   // To be able to use this keyword we need to be within an `async` function
   const s1 = await getFile(audioCtx, dtmffp);
@@ -317,12 +202,16 @@ async function setupSample() {
   const s3 = await getFile(audioCtx, clapfp);
   const s4 = await getFile(audioCtx, snarefp);
   const s5 = await getFile(audioCtx, hihatfp);
+  const s6 = await getFile(audioCtx, rimfp);
+  const s7 = await getFile(audioCtx, ridefp);
   return {
     dtmf: s1,
     kick: s2,
     clap: s3,
     snare: s4,
-    hihat: s5
+    hihat: s5,
+    rim: s6,
+    ride: s7
   };
 }
 
@@ -356,37 +245,36 @@ function nextNote() {
 
 // Create a queue for the notes that are to be played, with the current time that we want them to play:
 const notesInQueue = [];
-let dtmf;
 let kick;
 let clap;
 let snare;
 let hihat;
+let rim;
+let ride;
 
 function scheduleNote(beatNumber, time) {
   // push the note on the queue, even if we're not playing.
   notesInQueue.push({note: beatNumber, time: time});
   // console.log(beatNumber, time);
 
+
   if (pads[0].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
-    playPulse();
-  }
-  if (pads[1].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
-    playNoise();
-  }
-  if (pads[2].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
-    playSample(audioCtx, dtmf);
-  }
-  if (pads[3].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
     playSample(audioCtx, kick)
   }
-  if (pads[4].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+  if (pads[1].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
     playSample(audioCtx, clap)
   }
-  if (pads[5].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+  if (pads[2].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
     playSample(audioCtx, snare)
   }
-  if (pads[6].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+  if (pads[3].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
     playSample(audioCtx, hihat)
+  }
+  if (pads[4].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+    playSample(audioCtx, rim)
+  }
+  if (pads[5].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+    playSample(audioCtx, ride)
   }
 }
 
@@ -436,11 +324,12 @@ let isPlaying = false;
 setupSample()
   .then((sample) => {
     loadingEl.style.display = 'none';
-    dtmf = sample.dtmf; // to be used in our playSample function
     kick = sample.kick;
     clap = sample.clap;
     snare = sample.snare;
     hihat = sample.hihat;
+    ride = sample.ride;
+    rim = sample.rim;
 
     playButton.addEventListener('click', ev => {
       isPlaying = !isPlaying;
