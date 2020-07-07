@@ -72,7 +72,7 @@ h2 {
 /* sequencer ~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #sequencer {
   width: 84vw;
-  max-width: 900px;
+  max-width: 1300px;
   min-width: 600px;
   margin: 0 auto;
   background-color: var(--boxMain);
