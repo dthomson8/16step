@@ -17,33 +17,13 @@
     <section class="controls-main">
       <h1>dslug</h1>
       <label for="bpm">BPM</label>
-      <input name="bpm" id="bpm" type="range" min="40" max="180" value="120" step="1" />
+      <input name="bpm" id="bpm" type="range" min="40" max="250" value="120" step="1" />
       <span id="bpmval">120</span>
       <button data-playing="false">Play</button>
     </section>
 
     <div id="tracks">
       <!-- track one: bleep -->
-      <section class="track-one">
-        <h2>Sweep</h2>
-        <section class="controls">
-          <label for="attack">Att</label>
-          <input name="attack" id="attack" type="range" min="0" max="1" value="0.2" step="0.1" />
-          <label for="release">Rel</label>
-          <input name="release" id="release" type="range" min="0" max="1" value="0.5" step="0.1" />
-        </section><!--
-        --><section class="pads">
-          <button role="switch" aria-checked="false"><span>Voice 1, Note 1</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 1, Note 2</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 1, Note 3</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 1, Note 4</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 1, Note 5</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 1, Note 6</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 1, Note 7</span></button>
-          <button role="switch" aria-checked="false"><span>Voice 1, Note 8</span></button>
-        </section>
-      </section>
-
       <!-- track two: pad/sweep -->
       <section class="track-two">
         <h2>Pulse</h2>
@@ -208,18 +188,6 @@ allPadButtons.forEach(el => {
 
 const wave = audioCtx.createPeriodicWave(wavetable.real, wavetable.imag);
 
-// let noteTime = 1;
-let attackTime = 0.2;
-const attackControl = document.querySelector('#attack');
-attackControl.addEventListener('input', ev => {
-  attackTime = Number(ev.target.value);
-}, false);
-
-let releaseTime = 0.5;
-const releaseControl = document.querySelector('#release');
-releaseControl.addEventListener('input', ev => {
-  releaseTime = Number(ev.target.value);
-}, false);
 
 const sweepLength = 1;
 // expose attack time & release time
@@ -400,27 +368,24 @@ function scheduleNote(beatNumber, time) {
   // console.log(beatNumber, time);
 
   if (pads[0].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
-    playSweep();
-  }
-  if (pads[1].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
     playPulse();
   }
-  if (pads[2].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+  if (pads[1].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
     playNoise();
   }
-  if (pads[3].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+  if (pads[2].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
     playSample(audioCtx, dtmf);
   }
-  if (pads[4].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+  if (pads[3].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
     playSample(audioCtx, kick)
   }
-  if (pads[5].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+  if (pads[4].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
     playSample(audioCtx, clap)
   }
-  if (pads[6].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+  if (pads[5].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
     playSample(audioCtx, snare)
   }
-  if (pads[7].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+  if (pads[6].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
     playSample(audioCtx, hihat)
   }
 }
