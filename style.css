@@ -15,7 +15,7 @@
   --boxMain: var(--pink);
   --boxSecond: var(--purple);
   --boxHigh: var(--yellow);
-  --border: 1vmin solid var(--black);
+  --border: 0.5vmin solid var(--black);
   --borderRad: 2px;
 }
 
@@ -81,7 +81,7 @@ h2 {
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~ top section */
 .controls-main {
-  padding: 2vw;
+  padding: 1vw;
   background-color: var(--boxSecond);
   border-bottom: var(--border);
   display: grid;
@@ -126,10 +126,10 @@ h2 {
 /* ~~~~~~~~~~~~~~~~~~~~~~~ main body */
 [class^="track"] {
   display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: 15% 35% 50%;
+  grid-template-rows: 100px 1fr;
+  grid-template-columns: 10% 55% 35%;
   align-items: center;
-  padding: 2vmin;
+  padding: 1vmin;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~ sliders */
@@ -161,10 +161,10 @@ h2 {
 }
 
 .pads button {
-  width: 9vw;
-  height: 9vw;
-  min-width: 56px;
-  min-height: 56px;
+  width: 2vw;
+  height: 2vw;
+  min-width: 20px;
+  min-height: 20px;
   max-width: 96px;
   max-height: 96px;
   margin: 0;
