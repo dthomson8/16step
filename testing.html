@@ -21,7 +21,9 @@
       <span id="bpmval">120</span>
       <button data-playing="false">Play</button>
     </section>
+    <div id="synths">
 
+    </div>
     <div id="tracks">
 
     </div>
@@ -40,15 +42,27 @@ const audioCtx = new AudioContext();
 
 // Before we do anything more, let's grab our checkboxes from the interface. We want to keep them in the groups they are in as each row represents a different sound or _voice_.
 
-let pads;
+let perc;
 let allPadButtons;
+let stabs;
+let allStabButtons;
 
 function padSetup() {
-  pads = document.querySelectorAll('.pads');
+  perc = document.querySelectorAll('.perc');
   allPadButtons = document.querySelectorAll('#tracks button');
-
+  stabs = document.querySelectorAll('.synths');
+  allStabButtons = document.querySelectorAll('#synths button');
   // switch aria attribute on click
   allPadButtons.forEach(el => {
+    el.addEventListener('click', () => {
+      if (el.getAttribute('aria-checked') === 'false') {
+        el.setAttribute('aria-checked', 'true');
+      } else {
+        el.setAttribute('aria-checked', 'false');
+      }
+    }, false)
+  })
+  allStabButtons.forEach(el => {
     el.addEventListener('click', () => {
       if (el.getAttribute('aria-checked') === 'false') {
         el.setAttribute('aria-checked', 'true');
@@ -88,7 +102,6 @@ function playSample(audioContext, audioBuffer) {
 }
 
 async function setupSample() {
-  let arr = []
   const dtmffp = 'dtmf.mp3';
   const kickfp = 'kick.wav';
   const clapfp = 'clap.wav';
@@ -96,6 +109,14 @@ async function setupSample() {
   const hihatfp = 'hihat.wav';
   const rimfp = 'rim.wav';
   const ridefp = 'ride.wav';
+  const cfp = 'synthstabs/C-synth.wav';
+  const afp = 'synthstabs/A-synth.wav';
+  const bfp = 'synthstabs/B-synth.wav';
+  const dfp = 'synthstabs/D-synth.wav';
+  const efp = 'synthstabs/E-synth.wav';
+  const ffp = 'synthstabs/F-synth.wav';
+  const gfp = 'synthstabs/G-synth.wav';
+  const c2fp = 'synthstabs/c2-synth.wav';
   // Here we're `await`ing the async/promise that is `getFile`.
   // To be able to use this keyword we need to be within an `async` function
   const s1 = await getFile(audioCtx, dtmffp);
@@ -105,14 +126,17 @@ async function setupSample() {
   const s5 = await getFile(audioCtx, hihatfp);
   const s6 = await getFile(audioCtx, rimfp);
   const s7 = await getFile(audioCtx, ridefp);
+  const ssC = await getFile(audioCtx, cfp);
+  const ssD = await getFile(audioCtx, dfp);
+  const ssE = await getFile(audioCtx, efp);
+  const ssF = await getFile(audioCtx, ffp);
+  const ssG = await getFile(audioCtx, gfp);
+  const ssA = await getFile(audioCtx, afp);
+  const ssB = await getFile(audioCtx, bfp);
+  const ssC2 = await getFile(audioCtx, c2fp);
   return {
-    dtmf: s1,
-    kick: s2,
-    clap: s3,
-    snare: s4,
-    hihat: s5,
-    rim: s6,
-    ride: s7
+    dtmf: s1, kick: s2, clap: s3, snare: s4, hihat: s5, rim: s6, ride: s7,
+    c: ssC, d: ssD, e: ssE, f: ssF, g: ssG, a: ssA, b: ssB, c2: ssC2
   };
 }
 
@@ -146,36 +170,54 @@ function nextNote() {
 
 // Create a queue for the notes that are to be played, with the current time that we want them to play:
 const notesInQueue = [];
-let kick;
-let clap;
-let snare;
-let hihat;
-let rim;
-let ride;
+let kick; let clap; let snare; let hihat; let rim; let ride;
+let astab; let bstab; let cstab; let dstab; let estab; let fstab; let gstab; let c2stab;
 
 function scheduleNote(beatNumber, time) {
   // push the note on the queue, even if we're not playing.
   notesInQueue.push({note: beatNumber, time: time});
   // console.log(beatNumber, time);
-
-
-  if (pads[0].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+  if (perc[0].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
     playSample(audioCtx, kick)
   }
-  if (pads[1].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+  if (perc[1].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
     playSample(audioCtx, clap)
   }
-  if (pads[2].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+  if (perc[2].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
     playSample(audioCtx, snare)
   }
-  if (pads[3].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+  if (perc[3].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
     playSample(audioCtx, hihat)
   }
-  if (pads[4].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+  if (perc[4].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
     playSample(audioCtx, rim)
   }
-  if (pads[5].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+  if (perc[5].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
     playSample(audioCtx, ride)
+  }
+  if (stabs[0].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+    playSample(audioCtx, cstab)
+  }
+  if (stabs[1].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+    playSample(audioCtx, dstab)
+  }
+  if (stabs[2].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+    playSample(audioCtx, estab)
+  }
+  if (stabs[3].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+    playSample(audioCtx, fstab)
+  }
+  if (stabs[4].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+    playSample(audioCtx, gstab)
+  }
+  if (stabs[5].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+    playSample(audioCtx, astab)
+  }
+  if (stabs[6].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+    playSample(audioCtx, bstab)
+  }
+  if (stabs[7].querySelectorAll('button')[currentNote].getAttribute('aria-checked') === 'true') {
+    playSample(audioCtx, c2stab)
   }
 }
 
@@ -204,11 +246,14 @@ function draw() {
 
   // We only need to draw if the note has moved.
   if (lastNoteDrawn !== drawNote) {
-    pads.forEach(el => {
+    perc.forEach(el => {
       el.children[lastNoteDrawn].style.borderColor = 'hsla(0, 0%, 10%, 1)';
       el.children[drawNote].style.borderColor = 'hsla(49, 99%, 50%, 1)';
     });
-
+    stabs.forEach(el => {
+      el.children[lastNoteDrawn].style.borderColor = 'hsla(0, 0%, 10%, 1)';
+      el.children[drawNote].style.borderColor = 'hsla(49, 99%, 50%, 1)';
+    });
     lastNoteDrawn = drawNote;
   }
   // set up to draw again
@@ -231,7 +276,16 @@ setupSample()
     hihat = sample.hihat;
     ride = sample.ride;
     rim = sample.rim;
+    cstab = sample.c;
+    dstab = sample.d;
+    estab = sample.e;
+    fstab = sample.f;
+    gstab = sample.g;
+    astab = sample.a;
+    bstab = sample.b;
+    c2stab = sample.c2;
     createButton();
+    createSynthStabs();
     rateStuff();
     padSetup();
     playButton.addEventListener('click', ev => {
@@ -255,7 +309,6 @@ setupSample()
 
 function createButton() {
     console.log("yoo")
-    var tracks = document.getElementsByClassName('track-elev')[0];
     var tracks = ["track-one", "track-two", "track-three", "track-four", "track-five", "track-six"]
     var samples = ["Kick", "Clap", "Snare", "Hihat", "Rim", "Ride"]
     var tracksDiv = document.getElementById("tracks");
@@ -273,7 +326,7 @@ function createButton() {
       controlSect.insertAdjacentHTML('beforeend', '<label for="rate">Rate</label> <input name="rate" id="rate" type="range" min="0.1" max="2" value="1" step="0.1" />');
       sect.appendChild(controlSect);
       padsSect = document.createElement("SECTION");
-      padsSect.setAttribute("class", "pads");
+      padsSect.setAttribute("class", "perc");
       for (z=0; z<16;z++) {
         var btn = document.createElement("BUTTON");
         btn.setAttribute("role", "switch");
@@ -284,6 +337,28 @@ function createButton() {
     }
 }
 
+function createSynthStabs() {
+  console.log("creating synths...")
+  var synths = ["synth-C", "synth-B", "synth-D", "synth-E", "synth-F", "synth-G", "synth-A", "synth-B", "synth-C2"];
+  var names = ["C", "B", "D", "E", "F", "G", "A", "B", "C"];
+  var synthDiv = document.getElementById("synths");
+  for (i=0; i < synths.length; i++) {
+    var sect = document.createElement("SECTION");
+    console.log(synths[i]);
+    sect.setAttribute("class", synths[i]);
+    synthDiv.appendChild(sect);
+    stabSect = document.createElement("SECTION");
+    stabSect.setAttribute("class", "synths");
+    for (z=0; z<16;z++) {
+      var btn = document.createElement("BUTTON");
+      btn.setAttribute("role", "switch");
+      btn.setAttribute("aria-checked", "false");
+      stabSect.appendChild(btn);
+    }
+    sect.appendChild(stabSect);
+  }
+
+}
 </script>
 </body>
 </html>
