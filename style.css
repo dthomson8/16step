@@ -85,8 +85,7 @@ h2 {
   background-color: var(--boxSecond);
   border-bottom: var(--border);
   display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: repeat(5, auto);
+  grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr 1fr;
   align-items: center;
 }
 
@@ -100,6 +99,17 @@ h2 {
 }
 
 /* play button */
+#clearall {
+  align-self: stretch;
+  border: var(--border);
+  border-radius: var(--borderRad);
+  background-color: var(--boxSecond);
+  cursor: pointer;
+}
+
+#clearall:hover {
+  background-color: var(--blue);
+}
 [data-playing] {
   align-self: stretch;
   border: var(--border);
@@ -192,7 +202,7 @@ h2 {
   display: none;
 }
 
-.synths button span }
+.synths button span {
   display: none;
 }
 /* range input styling ~~~~~~~~~~~~~~~~~~~ */

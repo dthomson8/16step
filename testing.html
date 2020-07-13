@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Step Sequencer: MDModemnz</title>
-  <meta name="description" content="Making an instrument with the Web Audio API">
+  <title>16step</title>
+  <meta name="description" content="16step sequencer/drum pad">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
@@ -19,7 +19,8 @@
       <label for="bpm">BPM</label>
       <input name="bpm" id="bpm" type="range" min="40" max="350" value="120" step="1" />
       <span id="bpmval">120</span>
-      <button data-playing="false">Play</button>
+      <button id="clearall" onclick="clearAll()">Clear</button>
+      <button data-playing="false" id="playbutton">Play</button>
     </section>
     <div id="synths">
 
@@ -102,38 +103,15 @@ function playSample(audioContext, audioBuffer) {
 }
 
 async function setupSample() {
-  const dtmffp = 'dtmf.mp3';
-  const kickfp = 'kick.wav';
-  const clapfp = 'clap.wav';
-  const snarefp = 'snare.wav';
-  const hihatfp = 'hihat.wav';
-  const rimfp = 'rim.wav';
-  const ridefp = 'ride.wav';
-  const cfp = 'synthstabs/C-synth.wav';
-  const afp = 'synthstabs/A-synth.wav';
-  const bfp = 'synthstabs/B-synth.wav';
-  const dfp = 'synthstabs/D-synth.wav';
-  const efp = 'synthstabs/E-synth.wav';
-  const ffp = 'synthstabs/F-synth.wav';
-  const gfp = 'synthstabs/G-synth.wav';
-  const c2fp = 'synthstabs/c2-synth.wav';
+  const dtmffp = 'dtmf.mp3'; const kickfp = 'kick.wav'; const clapfp = 'clap.wav'; const snarefp = 'snare.wav'; const hihatfp = 'hihat.wav';
+  const rimfp = 'rim.wav'; const ridefp = 'ride.wav'; const cfp = 'synthstabs/C-synth.wav'; const afp = 'synthstabs/A-synth.wav'; const bfp = 'synthstabs/B-synth.wav';
+  const dfp = 'synthstabs/D-synth.wav';  const efp = 'synthstabs/E-synth.wav'; const ffp = 'synthstabs/F-synth.wav'; const gfp = 'synthstabs/G-synth.wav'; const c2fp = 'synthstabs/c2-synth.wav';
   // Here we're `await`ing the async/promise that is `getFile`.
   // To be able to use this keyword we need to be within an `async` function
-  const s1 = await getFile(audioCtx, dtmffp);
-  const s2 = await getFile(audioCtx, kickfp);
-  const s3 = await getFile(audioCtx, clapfp);
-  const s4 = await getFile(audioCtx, snarefp);
-  const s5 = await getFile(audioCtx, hihatfp);
-  const s6 = await getFile(audioCtx, rimfp);
-  const s7 = await getFile(audioCtx, ridefp);
-  const ssC = await getFile(audioCtx, cfp);
-  const ssD = await getFile(audioCtx, dfp);
-  const ssE = await getFile(audioCtx, efp);
-  const ssF = await getFile(audioCtx, ffp);
-  const ssG = await getFile(audioCtx, gfp);
-  const ssA = await getFile(audioCtx, afp);
-  const ssB = await getFile(audioCtx, bfp);
-  const ssC2 = await getFile(audioCtx, c2fp);
+  const s1 = await getFile(audioCtx, dtmffp); const s2 = await getFile(audioCtx, kickfp); const s3 = await getFile(audioCtx, clapfp); const s4 = await getFile(audioCtx, snarefp);
+  const s5 = await getFile(audioCtx, hihatfp); const s6 = await getFile(audioCtx, rimfp); const s7 = await getFile(audioCtx, ridefp); const ssC = await getFile(audioCtx, cfp); const ssD = await getFile(audioCtx, dfp);
+  const ssE = await getFile(audioCtx, efp); const ssF = await getFile(audioCtx, ffp); const ssG = await getFile(audioCtx, gfp); const ssA = await getFile(audioCtx, afp);
+  const ssB = await getFile(audioCtx, bfp); const ssC2 = await getFile(audioCtx, c2fp);
   return {
     dtmf: s1, kick: s2, clap: s3, snare: s4, hihat: s5, rim: s6, ride: s7,
     c: ssC, d: ssD, e: ssE, f: ssF, g: ssG, a: ssA, b: ssB, c2: ssC2
@@ -263,6 +241,7 @@ function draw() {
 // when the sample has loaded allow play
 const loadingEl = document.querySelector('.loading');
 const playButton = document.querySelector('[data-playing]');
+const clearButton = document.querySelector('#clearall');
 let isPlaying = false;
 
 // make generic sample handling scripts
@@ -305,6 +284,7 @@ setupSample()
         ev.target.dataset.playing = 'false';
       }
     })
+
   });
 
 function createButton() {
@@ -335,6 +315,20 @@ function createButton() {
       }
       sect.appendChild(padsSect);
     }
+}
+
+function clearAll() {
+  console.log("clearall");
+  allPadButtons.forEach(el => {
+      if (el.getAttribute('aria-checked') === 'true') {
+        el.setAttribute('aria-checked', 'false');
+      }
+  })
+  allStabButtons.forEach(el => {
+      if (el.getAttribute('aria-checked') === 'true') {
+        el.setAttribute('aria-checked', 'false');
+      }
+  })
 }
 
 function createSynthStabs() {
